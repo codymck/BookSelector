@@ -98,7 +98,7 @@ void outputList()
 }
 
 /**
- * @brief bubblesort vector of recommendations based on
+ * @brief bubblesort vector of recommendations based on score
  *
  * @param rList
  */
@@ -117,6 +117,11 @@ void sortList(vector<recommendation> &rList)
     }
 }
 
+/**
+ * @brief scrambles the recommendation list using time
+ * loops 100 times selecting random recommendation
+ * then adds a random number 0 - 300 to the score
+ */
 void scramble()
 {
     time_t current_time = time(NULL);
