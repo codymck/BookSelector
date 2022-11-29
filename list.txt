@@ -2,3 +2,8 @@ Sapiens,Yuval Noah Harari,443,Cody
 The Book of Five Rings,Miyamoto Masashi,288,Keegan
 1984,George Orwell,328,Jared
 Empire of the Summer Moon,S.C. Gwynne,384,Patrick
+
+Letters from a Stoic,Seneca,254,Cody
+The Immortality Key,Brian Muraresku,480,Cody
+Stoic Philosophy of Seneca,Seneca,261,Cody
+The Daily Stoic,Ryan Holiday,416,Cody

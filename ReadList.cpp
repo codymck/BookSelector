@@ -26,6 +26,9 @@ void readList()
 {
     string listName = "list.txt";
 
+    // cout << "Enter name of list with recommendations in format {Title,Author,Pages,RecommendedBy}: ";
+    // cin >> listName;
+
     ifstream fin(listName.c_str(), ios::in);
 
     string tmp;
@@ -39,21 +42,24 @@ void readList()
             stringstream ss(line);
             string word;
 
-            while (!ss.eof())
+            if (!line.empty())
             {
-                getline(ss, word, ',');
-                rec.bookTitle = word;
+                while (!ss.eof())
+                {
+                    getline(ss, word, ',');
+                    rec.bookTitle = word;
 
-                getline(ss, word, ',');
-                rec.author = word;
+                    getline(ss, word, ',');
+                    rec.author = word;
 
-                getline(ss, word, ',');
-                rec.pages = stoi(word);
+                    getline(ss, word, ',');
+                    rec.pages = stoi(word);
 
-                getline(ss, word, ',');
-                rec.recommendedBy = word;
+                    getline(ss, word, ',');
+                    rec.recommendedBy = word;
 
-                recList.push_back(rec);
+                    recList.push_back(rec);
+                }
             }
         }
     }
