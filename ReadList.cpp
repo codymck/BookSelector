@@ -5,10 +5,15 @@
 #include <sstream>
 #include <cstdlib>
 #include "time.h"
-#include <windows.h>
 #include <algorithm>
 
 using namespace std;
+
+/**
+ * @brief Simple console application for selecting a book from a list of recommendations, randomizing a score for each book, and sorting by highest score
+ *
+ * @author Cody McKinney
+ */
 
 struct recommendation
 {
@@ -17,15 +22,18 @@ struct recommendation
     string recommendedBy; // who recommended the book
     int pages;            // number of pages
 
-    int count; // number of times book selected
+    int score; // number of times book selected
 };
 
+// Global variable for recommendation list vector
 vector<recommendation> recList;
 
+// read ist and fill out recommendation info to add to recommendation list
 void readList()
 {
-    string listName = "list.txt";
+    string listName = "list.txt"; // can hardcode list name
 
+    /* Or uncomment below to set name of text through input */
     // cout << "Enter name of list with recommendations in format {Title,Author,Pages,RecommendedBy}: ";
     // cin >> listName;
 
@@ -37,11 +45,14 @@ void readList()
     {
         recommendation rec;
 
+        // for every line in the file input stream
         for (string line; getline(fin, line);)
         {
+            // string stream to delimit commas
             stringstream ss(line);
             string word;
 
+            // handle empty lines
             if (!line.empty())
             {
                 while (!ss.eof())
@@ -65,6 +76,7 @@ void readList()
     }
 }
 
+/* output list of recommendations and their randomized score */
 void outputList()
 {
     cout << "\n\t\tLIST OF SELECTED BOOKS\n"
@@ -80,11 +92,16 @@ void outputList()
         cout << "\t\tAuthor: " << recList.at(i).author << endl;
         cout << "\t\tPage Count: " << recList.at(i).pages << endl;
         cout << "\t\tRecommended By: " << recList.at(i).recommendedBy << endl;
-        cout << "\t\tCount: " << recList.at(i).count << endl;
+        cout << "\t\tScore: " << recList.at(i).score << endl;
         cout << endl;
     }
 }
 
+/**
+ * @brief bubblesort vector of recommendations based on
+ *
+ * @param rList
+ */
 void sortList(vector<recommendation> &rList)
 {
     int n = rList.size();
@@ -92,7 +109,7 @@ void sortList(vector<recommendation> &rList)
     {
         for (int j = 0; j < n - i - 1; j++)
         {
-            if (rList.at(j).count < rList.at(j + 1).count)
+            if (rList.at(j).score < rList.at(j + 1).score)
             {
                 iter_swap(rList.begin() + j, rList.begin() + (j + 1));
             }
@@ -110,7 +127,7 @@ void scramble()
     {
         int random = rand() % recList.size();
         int value = rand() % 300;
-        recList.at(random).count += value;
+        recList.at(random).score += value;
     }
 
     sortList(recList);
