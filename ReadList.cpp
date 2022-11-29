@@ -6,6 +6,7 @@
 #include <cstdlib>
 #include "time.h"
 #include <windows.h>
+#include <algorithm>
 
 using namespace std;
 
@@ -60,17 +61,36 @@ void readList()
 
 void outputList()
 {
-    cout << "LIST OF SELECTED BOOKS\n"
+    cout << "\n\t\tLIST OF SELECTED BOOKS\n"
          << endl;
 
     for (int i = 0; i < recList.size(); i++)
     {
-        cout << "Book Title: " << recList.at(i).bookTitle << endl;
-        cout << "Author: " << recList.at(i).author << endl;
-        cout << "Page Count: " << recList.at(i).pages << endl;
-        cout << "Recommended By: " << recList.at(i).recommendedBy << endl;
-        cout << "Count: " << recList.at(i).count << endl;
+        cout << "\t\t------";
+        cout << "#" << i + 1;
+        cout << "------" << endl;
+
+        cout << "\t\tBook Title: " << recList.at(i).bookTitle << endl;
+        cout << "\t\tAuthor: " << recList.at(i).author << endl;
+        cout << "\t\tPage Count: " << recList.at(i).pages << endl;
+        cout << "\t\tRecommended By: " << recList.at(i).recommendedBy << endl;
+        cout << "\t\tCount: " << recList.at(i).count << endl;
         cout << endl;
+    }
+}
+
+void sortList(vector<recommendation> &rList)
+{
+    int n = rList.size();
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < n - i - 1; j++)
+        {
+            if (rList.at(j).count < rList.at(j + 1).count)
+            {
+                iter_swap(rList.begin() + j, rList.begin() + (j + 1));
+            }
+        }
     }
 }
 
@@ -87,6 +107,7 @@ void scramble()
         recList.at(random).count += value;
     }
 
+    sortList(recList);
     outputList();
 }
 
