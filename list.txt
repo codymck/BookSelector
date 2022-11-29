@@ -1,0 +1,4 @@
+Sapiens,Yuval Noah Harari,443,Cody
+The Book of Five Rings,Miyamoto Masashi,288,Keegan
+1984,George Orwell,328,Jared
+Empire of the Summer Moon,S.C. Gwynne,384,Patrick
